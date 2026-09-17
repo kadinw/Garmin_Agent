@@ -10,6 +10,7 @@ from datetime import date, timedelta
 from garmin_agent.config import load_settings
 from garmin_agent.garmin import collect_report, login
 from garmin_agent.mailer import send_report
+from garmin_agent.prefs import load_prefs
 from garmin_agent.report import build_files, email_body, flatten_day, write_files
 
 
@@ -20,8 +21,8 @@ def parse_args(argv: list[str] | None = None) -> argparse.Namespace:
     parser.add_argument(
         "--days",
         type=int,
-        default=7,
-        help="Number of complete days to include, ending yesterday (default: 7).",
+        default=None,
+        help="Number of complete days to include, ending yesterday. Defaults to settings.json.",
     )
     parser.add_argument(
         "--date",
@@ -57,8 +58,9 @@ def configure_logging(settings, verbose: bool) -> None:
 
 def main(argv: list[str] | None = None) -> int:
     args = parse_args(argv)
-    if args.days < 1:
-        print("--days must be at least 1", file=sys.stderr)
+    days = args.days if args.days is not None else load_prefs().lookback_days
+    if days < 1:
+        print("Days of data must be at least 1", file=sys.stderr)
         return 2
 
     settings = load_settings()
@@ -66,10 +68,10 @@ def main(argv: list[str] | None = None) -> int:
     logger = logging.getLogger("garmin_agent")
 
     end_day = date.fromisoformat(args.date) if args.date else date.today() - timedelta(days=1)
-    logger.info("Collecting Garmin data through %s (%s day window)", end_day.isoformat(), args.days)
+    logger.info("Collecting Garmin data through %s (%s day window)", end_day.isoformat(), days)
 
     client = login(settings)
-    report = collect_report(client, end_day, args.days)
+    report = collect_report(client, end_day, days)
     files = build_files(report)
     stamp = f"garmin_{end_day.isoformat()}"
     attachments = write_files(files, settings.output_dir, stamp)

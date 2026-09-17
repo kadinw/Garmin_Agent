@@ -9,6 +9,13 @@ output/
 logs/
 *.log
 
+# User schedule and data-window choices
+settings.json
+
+# PyInstaller
+build/
+dist/
+
 # Python
 __pycache__/
 *.py[cod]

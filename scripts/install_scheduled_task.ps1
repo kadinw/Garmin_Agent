@@ -3,7 +3,8 @@
 
 param(
     [string]$Time = "07:00",
-    [string]$TaskName = "Garmin Agent Daily Report"
+    [string]$TaskName = "Garmin Agent Daily Report",
+    [switch]$SkipDeps
 )
 
 $ErrorActionPreference = "Stop"
@@ -15,6 +16,9 @@ $Requirements = Join-Path $Root "requirements.txt"
 Write-Host "Project root: $Root"
 
 if (-not (Test-Path $VenvPython)) {
+    if ($SkipDeps) {
+        throw "The program is not installed yet. Click Save and turn on the daily email first."
+    }
     Write-Host "Creating Python virtual environment..."
     py -3.13 -m venv (Join-Path $Root ".venv")
     if (-not (Test-Path $VenvPython)) {
@@ -22,9 +26,11 @@ if (-not (Test-Path $VenvPython)) {
     }
 }
 
-Write-Host "Installing Python dependencies..."
-& $VenvPython -m pip install --upgrade pip
-& $VenvPython -m pip install -r $Requirements
+if (-not $SkipDeps) {
+    Write-Host "Installing Python dependencies..."
+    & $VenvPython -m pip install --upgrade pip
+    & $VenvPython -m pip install -r $Requirements
+}
 
 $Action = New-ScheduledTaskAction -Execute $Launcher -WorkingDirectory $Root
 $Trigger = New-ScheduledTaskTrigger -Daily -At $Time

@@ -6,7 +6,6 @@ from dataclasses import dataclass
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parent.parent
-DEFAULT_RECIPIENT = "aleccwilkins@gmail.com"
 SECRETS_FILE = ROOT / "secrets" / ".env.txt"
 
 
@@ -50,6 +49,7 @@ def load_settings() -> Settings:
     email = lines[0]
     garmin_password = lines[1]
     smtp_password = lines[2] if len(lines) >= 3 else garmin_password
+    smtp_password = smtp_password.replace(" ", "")
 
     token_dir = ROOT / "secrets" / ".garminconnect"
     output_dir = ROOT / "output"
@@ -62,7 +62,7 @@ def load_settings() -> Settings:
         email=email,
         garmin_password=garmin_password,
         smtp_password=smtp_password,
-        recipient=DEFAULT_RECIPIENT,
+        recipient=email,
         smtp_host="smtp.gmail.com",
         smtp_port=587,
         token_dir=token_dir,

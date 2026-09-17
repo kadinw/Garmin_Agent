@@ -1,16 +1,19 @@
 # Setup: which files to open
 
-Start here. You only need to open a few things. Leave the other files alone.
+Start here after you download this project. You only need to open a few things. Leave the other files alone.
 
-## 1. Open this folder
+## 1. Open the folder you downloaded
 
-In File Explorer, open:
+1. Download this repository (on GitHub, click **Code**, then **Download ZIP**). Or clone it with git, if you use git.
+2. If it arrived as a ZIP, right-click the ZIP → **Extract All…** and pick any folder you will keep, such as your Desktop or Documents. The exact location does not matter.
+3. Open the extracted folder. Its name is usually **Garmin_Agent** or **Garmin_Agent-main**.
+4. You should see **GarminAgentSetup.exe**, `run_daily.py`, and this `SETUP.md` file in that same folder.
 
-`Documents\GitHub\Garmin_Agent`
-
-You should see a file named **GarminAgentSetup.exe** in that same folder, next to `run_daily.py` and this `SETUP.md` file.
+If you see only one folder inside another, open the inner folder until those files are visible.
 
 If Python is not installed yet, first install it from [python.org/downloads](https://www.python.org/downloads/). On the installer, check **Add python.exe to PATH**.
+
+Keep this folder on this computer. Do not delete it after setup. The daily email job runs from here.
 
 ---
 

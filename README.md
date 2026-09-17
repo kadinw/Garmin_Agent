@@ -15,13 +15,13 @@ You do **not** need to be a programmer to use it. Follow the steps in order. If 
 - A Garmin Connect account that can sign in with **email and password** (not only “Sign in with Google”)
 - A Gmail account. The program emails **that same Gmail address**.
 
-This folder should stay on this computer. Do not upload the `secrets` folder to GitHub.
+This folder should stay on this computer after you download it. Do not upload the `secrets` folder to GitHub.
 
 ---
 
 ## Easiest way: run the setup program
 
-1. Keep `GarminAgentSetup.exe` in this same Garmin_Agent folder (next to `run_daily.py`).
+1. Keep **GarminAgentSetup.exe** in the same folder as `run_daily.py` (the folder you downloaded or extracted).
 2. Double-click **GarminAgentSetup.exe**.
 3. If Windows says it protected your PC, click **More info**, then **Run anyway**.
 4. A settings window will open. Fill in:
@@ -108,7 +108,7 @@ If Garmin only lets you sign in with Google, open Garmin account settings and cr
 
 ## Step 2. Install the program on this computer (first time only)
 
-1. Open the **Garmin_Agent** folder (this project).
+1. In File Explorer, open the folder you downloaded (the one that contains `run_daily.py`).
 2. Click the address bar at the top of File Explorer, type `powershell`, and press Enter. A black or blue window should open in this folder.
 3. Copy and paste these three commands, one at a time. Press Enter after each:
 
@@ -190,8 +190,8 @@ Only use this if the easy way did not work.
    - New → Daily → set the time (for example 7:00:00 AM) → OK
 5. **Actions** tab:
    - New → Start a program
-   - Program/script: browse to `scripts\run_daily.bat` inside this project
-   - Start in: the Garmin_Agent project folder (the folder that contains `run_daily.py`)
+   - Program/script: browse to `scripts\run_daily.bat` inside the folder you downloaded
+   - Start in: that same downloaded folder (the one that contains `run_daily.py`)
 6. **Conditions** tab:
    - Uncheck **Start the task only if the computer is on AC power** if this is a laptop
 7. Click **OK**.

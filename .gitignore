@@ -1,0 +1,27 @@
+# Secrets and auth tokens — never commit these
+secrets/*
+!secrets/.env.example.txt
+.garminconnect/
+.garth/
+
+# Local runtime output
+output/
+logs/
+*.log
+
+# Python
+__pycache__/
+*.py[cod]
+*.pyo
+.Python
+*.egg-info/
+.venv/
+venv/
+env/
+
+# IDE / OS
+.vscode/
+.idea/
+.DS_Store
+Thumbs.db
+desktop.ini

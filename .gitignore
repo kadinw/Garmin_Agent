@@ -26,6 +26,9 @@ __pycache__/
 venv/
 env/
 
+# Leftover local folders that must not be published
+Garmin_Emails/
+
 # IDE / OS
 .vscode/
 .idea/
